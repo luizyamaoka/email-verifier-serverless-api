@@ -16,4 +16,3 @@ functions:
 
 plugins:
   - serverless-offline
-
