@@ -1,20 +1,23 @@
 'use strict';
 
 var EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var HTTP_STATUS = {
+  OK: 200,
+}
 
 function verify(event, context, callback) {
-  var body = typeof event.body == 'object' ? event.body : JSON.parse(event.body);
+  var body = typeof event.body === 'object' ? event.body : JSON.parse(event.body);
   var email = (body.email || '').toLowerCase();
 
   if (!email || email === undefined)
-    return buildResponse(200, false);
+    return respond(HTTP_STATUS.OK, false);
 
   if (!EMAIL_REGEX.test(email))
-    return buildResponse(200, false);
+    return respond(HTTP_STATUS.OK, false);
 
-  return buildResponse(200, true);
+  return respond(HTTP_STATUS.OK, true);
 
-  function buildResponse (statusCode, is_valid) {
+  function respond(statusCode, is_valid) {
     var body = {
       email: email,
       is_valid: is_valid,
