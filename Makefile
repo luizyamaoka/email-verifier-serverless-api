@@ -10,6 +10,7 @@ run-dev: ## Start application in development mode
 
 test: ## Run tests on the application
 	npm run codestyle
+	npm test
 
 help: ## Show possible make commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -17,3 +18,4 @@ help: ## Show possible make commands
 
 
 .DEFAULT_GOAL := help
+.PHONY: all test clean

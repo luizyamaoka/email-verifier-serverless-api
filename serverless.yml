@@ -9,7 +9,7 @@ provider:
 
 functions:
   verify:
-    handler: index.handler
+    handler: controller/email.handler
     events:
       - http: OPTIONS /verify
       - http: POST /verify  
