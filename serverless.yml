@@ -5,7 +5,7 @@ provider:
   runtime: nodejs8.10
   stage: ${opt:stage, 'dev'}
   region: us-east-1
-  timeout: 300
+  timeout: 30
 
 functions:
   verify:
