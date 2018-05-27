@@ -50,6 +50,10 @@ $ make deploy
 
 ## Usage
 
+A POST request must be sent to the `/verify` endpoint in order to validate an email.
+
+The request must contain a JSON body containing an object with an item called `email`.
+
 ``` shell
 $ curl \
   -X POST \
