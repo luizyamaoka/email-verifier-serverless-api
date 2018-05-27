@@ -5,35 +5,26 @@ var LambdaTester = require( 'lambda-tester' );
 
 var handler = require('../controller/email').handler;
 
-describe('email not provided', function() {
-  it('should return not valid', function() {
-    return LambdaTester( handler )
-      .event(buildEvent(''))
-      .expectResult( function (result) {
-        assert.equal(JSON.parse(result.body).is_valid, false);
-      });
-  });
-});
+var tests = [
+  { email: '', is_valid: false },
+  { email: 'foo@bar@email.com', is_valid: false },
+  { email: 'email with space@email.com', is_valid: false },
+  { email: 'emailwithnoat', is_valid: false },
+  { email: 'luiz.yamaoka@gmail.com', is_valid: true },
+];
 
-describe('email with invalid regex', function() {
-  it('should return not valid', function() {
-    return LambdaTester( handler )
-      .event(buildEvent('foo@bar@email.com'))
-      .expectResult( function (result) {
-        assert.equal(JSON.parse(result.body).is_valid, false);
-      });
+for (var i in tests) {
+  var test = tests[i];
+  describe('Test email "' + test['email'] + '"', function() {
+    it('should return is_valid = ' + test['is_valid'], function() {
+      return LambdaTester( handler )
+        .event(buildEvent(test['email']))
+        .expectResult( function (result) {
+          assert.equal(JSON.parse(result.body).is_valid, test['is_valid']);
+        });
+    });
   });
-});
-
-describe('valid email', function() {
-  it('should return valid', function() {
-    return LambdaTester( handler )
-      .event(buildEvent('luiz.yamaoka@gmail.com'))
-      .expectResult( function (result) {
-        assert.equal(JSON.parse(result.body).is_valid, true);
-      });
-  });
-});
+}
 
 function buildEvent(email) {
   var event = {
