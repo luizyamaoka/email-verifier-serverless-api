@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('assert');
-var LambdaTester = require( 'lambda-tester' );
+var LambdaTester = require('lambda-tester');
 
 var handler = require('../controller/email').handler;
 
@@ -17,7 +17,7 @@ for (var i in tests) {
   var test = tests[i];
   describe('Test email "' + test['email'] + '"', function() {
     it('should return is_valid = ' + test['is_valid'], function() {
-      return LambdaTester( handler )
+      return LambdaTester(handler)
         .event(buildEvent(test['email']))
         .expectResult( function (result) {
           assert.equal(JSON.parse(result.body).is_valid, test['is_valid']);
@@ -31,6 +31,6 @@ function buildEvent(email) {
   	body: {
   	  email: email,
   	}
-  }
+  };
   return event;
 }

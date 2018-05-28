@@ -11,6 +11,8 @@
 
 After receiving a request containing an email to be tested, the application will perform the following tests on it:
 * Format: The provided email will be tested against an email regex to check if it has a valid email format
+* MX Record: Check the existance of an MX record for the email domain
+* SMTP Server: Connect to the mail server and check its existance
 
 ## Installation
 
