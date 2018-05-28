@@ -7,7 +7,7 @@
 [tb]: https://api.travis-ci.org/luizyamaoka/email-verifier-serverless-api.svg?branch=master
 [tp]: https://travis-ci.org/luizyamaoka/email-verifier-serverless-api
 
-## How does it work
+## How it works
 
 After receiving a request containing an email to be tested, the application will perform the following tests on it:
 * Format: The provided email will be tested against an email regex to check if it has a valid email format
@@ -74,7 +74,9 @@ The API will always respond with the following fields
 
 ``` json
 {
-  "email": "foo@bar.com",
-  "is_valid": true
+  "email": "support@github.com",
+  "is_valid": true,
+  "status": "VALID_EMAIL_ADDRESS",
+  "message": "The provided email is valid"
 }
 ```

@@ -12,7 +12,7 @@ var tests = [
   { email: 'emailwithnoat', is_valid: false, status: 'INVALID_EMAIL_FORMAT' },
   { email: 'invaliddomain@klajdksladasdlk.com', is_valid: false, status: 'INVALID_DOMAIN' },
   { email: 'unexistant.email.jkslajdkalkdjkald@gmail.com', is_valid: false, status: 'INVALID_EMAIL_FORMAT' },
-  { email: 'luiz.yamaoka@gmail.com', is_valid: true, status: 'VALID_EMAIL_ADDRESS' },
+  { email: 'support@github.com', is_valid: true, status: 'VALID_EMAIL_ADDRESS' },
 ];
 
 for (var i in tests) {
